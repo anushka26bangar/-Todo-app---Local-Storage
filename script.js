@@ -1,7 +1,6 @@
 const url = "https://jsonplaceholder.typicode.com/todos";
 const container = document.getElementById("todo-container");
 
-// Simple Indian tasks to store instead of API titles
 const indianTasks = [
   "Walk for 10 minutes",
   "Drink water",
@@ -25,9 +24,6 @@ const indianTasks = [
   "Plan tomorrow's tasks"
 ];
 
-// ------------------------------
-// 1. FETCH API + STORE FIRST 20 SIMPLE TASKS
-// ------------------------------
 function fetchAndStore() {
   fetch(url)
     .then(res => res.json())
@@ -43,16 +39,11 @@ function fetchAndStore() {
     });
 }
 
-// ------------------------------
-// 2. GET TODOS FROM LOCAL STORAGE
-// ------------------------------
+
 function getTodos() {
   return JSON.parse(localStorage.getItem("todos")) || [];
 }
 
-// ------------------------------
-// 3. RENDER TODOS ON UI
-// ------------------------------
 function renderTodos() {
   const todos = getTodos();
   container.innerHTML = "";
@@ -86,9 +77,6 @@ function renderTodos() {
   });
 }
 
-// ------------------------------
-// 4. DELETE TODO
-// ------------------------------
 function deleteTodo(id) {
   const todos = getTodos();
   const updated = todos.filter(todo => todo.id !== id);
@@ -97,9 +85,6 @@ function deleteTodo(id) {
   renderTodos();
 }
 
-// ------------------------------
-// 5. BONUS – TOGGLE COMPLETE
-// ------------------------------
 function toggleComplete(id) {
   const todos = getTodos();
   const updated = todos.map(todo =>
@@ -110,7 +95,4 @@ function toggleComplete(id) {
   renderTodos();
 }
 
-// ------------------------------
-// INITIAL CALL
-// ------------------------------
 fetchAndStore();
